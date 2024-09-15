@@ -1,0 +1,65 @@
+From b4642702b1f698b3de3c4d0e4b7f5f2ace0b04cb Mon Sep 17 00:00:00 2001
+From: violeteye1234 <62634585+violeteye1234@users.noreply.github.com>
+Date: Sun, 15 Sep 2024 15:29:24 +0800
+Subject: [PATCH] added assertion
+
+---
+ __pycache__/client3.cpython-310.pyc | Bin 0 -> 1154 bytes
+ client_test.py                      |   6 ++++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+ create mode 100644 __pycache__/client3.cpython-310.pyc
+
+diff --git a/__pycache__/client3.cpython-310.pyc b/__pycache__/client3.cpython-310.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..d01ec6a88147b4d8477b5e9dfe3f44e05d8d88cf
+GIT binary patch
+literal 1154
+zcmYjQPjA~c6elUkmK{4w(=>_E9k>GR>S3un?65BA)~!v~o`R%74<lA+wD=q=kwu53
+zH`H@Z?gw#>`y#_WgRTPx^xo4>dz6!)6y87T>FM`=eAMlBli)gh_wV4Z1|k3W;NyjR
+z<OdY{H!4LG&52lADrglm5hx}?6^KZMDtbpmP1RH#Z5?72pEC0+G@uF5oX+VUdGkc9
+z09mvkIB73dAzXX{bU`o31-+n)HE+d@2FZw6hZ~r^Ep9>$ZqDg1q1X_&#HQGSEm((*
+z#{{-j12*6mY{J$c+$3{K$=SEK+k`r-tCbEx-Rh7zyL@*?(If2Oh;-ZUu^X~K{cPym
+zc(>Qfbt?0rwr=;)!$%K$XA>}QpJeL0KhCocl#mqVdPV4kD9=#rQ&bHy!>S!}PM!By
+zho}JmO3zsphu3j1W3yn3sOUC14`<Xzvv3e1p4#*qeqgkkq`+mKb2kKD04PxWH<?es
+za;Nz*6kw#o46dY;W1SU_myvZkJuT}_kCT3;%4lq|6qd2Hr|%ge?9wtC<XXCJR7PhL
+z?ZEi$vVk8Y%lroBE?wiB`;(XzH2=Nqy|!R%??CGlDWJ&Q(NGS1dpezrpm4VLB6BY%
+z{oX(uc?>%z<59X}e}^51<#xX6rFn)~Uq2YXEnCOn_7L_#1siMI7AnSKx`s~+AJfK-
+z)C0R(-uF^by^T)8lT8)Hp^6ndLb_-4HbDY|=^g$897ldK&Gmp+T_uvsLS6cOZu~Ls
+zSB-U<s9&aBIsNLzQh8`)jEG<PdS75<{WW2X(U^uPX0^&ll99}cB$<AG=vh_#uI1A4
+z`^f9=UHc_R7Ajl)3cc<$t}0?)8T|P4SsCm-|Eb#%;fd9Ss2N17M`Cqi@;vK5Fo1(-
+zov1Bi5gopM{_5wF?pI7*Ln!13lB5hXJk~P88plx5q>S*ul@;}?Ds`-)$550tJgkv)
+zWoSUEvR2K570o3bDodS-vAJqOjKBWIw_Z&}HC%=Jh$ufKX35s$5zcQ8-+PknJyh{V
+d?AZ#!AP(YY++1UvGUnM^L)oOCvhYL5{s)fwAC~|C
+
+literal 0
+HcmV?d00001
+
+diff --git a/client_test.py b/client_test.py
+index af2bf26..5ea2987 100644
+--- a/client_test.py
++++ b/client_test.py
+@@ -8,6 +8,8 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
+ 
+   def test_getDataPoint_calculatePriceBidGreaterThanAsk(self):
+     quotes = [
+@@ -15,10 +17,10 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price'] + quote['top_ask']['price'])/2))
+ 
+ 
+-  """ ------------ Add more unit tests ------------ """
+-
+ 
+ 
+ if __name__ == '__main__':
+-- 
+2.15.0
+
